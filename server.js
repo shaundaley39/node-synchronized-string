@@ -6,12 +6,6 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-
-var mongoose = require('mongoose');
-var bodyparser = require('body-parser');
-var noteRoutes = require('./api/routes/noteRoutes');
-
-app.use(bodyparser.json());
 app.use(express.static( __dirname + '/dist'));
 app.set('port', process.env.PORT || 80);
 
@@ -28,13 +22,6 @@ io.on('connection', function(socket){
     });
   });
 });
-
-app.get('/api/v1/notes', noteRoutes.collection);
-app.post('/api/v1/notes',  noteRoutes.create);
-app.get('/api/v1/notes/:id', noteRoutes.findById);
-app.put('/api/v1/notes/:id', noteRoutes.update);
-app.delete('/api/v1/notes/:id', noteRoutes.destroy);
-mongoose.connect('mongodb://localhost/notes-development');
 
 http.listen(app.get('port'), function() {
   console.log('Server running on ' + app.get('port'));
