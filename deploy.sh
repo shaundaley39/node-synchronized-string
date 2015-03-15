@@ -2,6 +2,8 @@
  # Run me with superuser privileges
  # arguments $1 git repo name  $2 app name
 # node
+APP="node-synchronized-string"
+REPO="https://github.com/shaundaley39/node-synchronized-string"
 sudo apt-get update && sudo apt-get install -y build-essential g++ tmux
 curl -O http://nodejs.org/dist/v0.10.29/node-v0.10.29.tar.gz
 tar -xvzf node-v0.10.29.tar.gz
@@ -25,8 +27,8 @@ sudo add-apt-repository ppa:git-core/ppa -y
 sudo apt-get update
 sudo apt-get install git -y
 # repo declared in first argument, as app declared in second argument
-git clone $1 $2
-cd $2
+git clone $REPO $APP
+cd $APP
 npm -g install
 # serve index.js to public ip address - forever
 npm -g install forever
@@ -35,13 +37,13 @@ stop on shutdown
 expect fork
 script
   PATH=/opt/node/bin:$PATH
-  exec forever start /home/ubuntu/$2/index.js
+  exec forever start /home/ubuntu/$APP/index.js
 end script
 pre-stop script
   PATH=/opt/node/bin:$PATH
-  exec forever stop /home/ubuntu/$2/index.js
-end script" >> /etc/init/$2.conf
-start $2
+  exec forever stop /home/ubuntu/$APP/index.js
+end script" >> /etc/init/$APP.conf
+start $APP
 # declare public ip address
 echo "the ip address of the server is:"
 curl icanhazip.com
