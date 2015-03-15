@@ -1,9 +1,10 @@
  #!/bin/bash
  # Run me with superuser privileges
- # arguments $1 git repo name  $2 app name
-# node
+# variables
 APP="node-synchronized-string"
 REPO="https://github.com/shaundaley39/node-synchronized-string"
+HOME="/home/ubuntu"
+# node
 sudo apt-get update && sudo apt-get install -y build-essential g++ tmux
 curl -O http://nodejs.org/dist/v0.10.29/node-v0.10.29.tar.gz
 tar -xvzf node-v0.10.29.tar.gz
@@ -17,7 +18,7 @@ echo "export PATH=/opt/node/bin:$PATH" >> ~/.bashrc
 echo 'Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/node/bin"' >> /etc/sudoers
 source ~/.bashrc
 export PATH=/opt/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-cd ~
+cd $HOME
 # redis
 sudo add-apt-repository ppa:chris-lea/redis-server -y
 sudo apt-get update
@@ -37,11 +38,11 @@ stop on shutdown
 expect fork
 script
   PATH=/opt/node/bin:$PATH
-  exec forever start /home/ubuntu/$APP/index.js
+  exec forever start $HOME/$APP/index.js
 end script
 pre-stop script
   PATH=/opt/node/bin:$PATH
-  exec forever stop /home/ubuntu/$APP/index.js
+  exec forever stop $HOME/$APP/index.js
 end script" >> /etc/init/$APP.conf
 start $APP
 # declare public ip address
