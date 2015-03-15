@@ -8,13 +8,6 @@ For deploying node-synchronized-string...
 
   ```
   sudo su
-  bash <(wget -O- https://raw.githubusercontent.com/shaundaley39/node-synchronized-string/deploy/deploy.sh) https://github.com/shaundaley39/node-synchronized-string node-synchronized-string
-  ```
-
-  Simpler:
-
-  ```
-  sudo su
   bash <(wget -O- https://raw.githubusercontent.com/shaundaley39/node-synchronized-string/deploy/deploy.sh)
   ```
 
