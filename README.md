@@ -6,9 +6,9 @@ For deploying node-synchronized-string...
 
 2. on the instance, execute deploy script:
 
-```
-sudo su
-bash <(wget -O- https://raw.githubusercontent.com/shaundaley39/node-synchronized-string/deploy/deploy.sh) https://github.com/shaundaley39/node-synchronized-string node-synchronized-string
-```
+  ```
+  sudo su
+  bash <(wget -O- https://raw.githubusercontent.com/shaundaley39/node-synchronized-string/deploy/deploy.sh) https://github.com/shaundaley39/node-synchronized-string node-synchronized-string
+  ```
 
 3. note the public ip address declared by the script - use this for accessing in web browser and for referencing in client side code
